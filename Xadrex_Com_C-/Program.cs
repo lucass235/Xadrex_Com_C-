@@ -1,2 +1,15 @@
-﻿// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Hello, World!");
+﻿using tabuleiro;
+
+namespace Xadrex_Com_C {
+    class Program {
+        static void Main(string[] args) {
+
+            Posicao P;
+            P = new Posicao(3, 4);
+
+            Console.WriteLine("Posição " + P);
+
+            Console.ReadLine();
+        }
+    }
+}
