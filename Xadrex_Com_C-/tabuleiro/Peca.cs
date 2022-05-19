@@ -18,5 +18,7 @@ namespace tabuleiro {
             this.tab = tab;
             this.qtdMovimetos = 0;
         }
+
+        
     }
 }
