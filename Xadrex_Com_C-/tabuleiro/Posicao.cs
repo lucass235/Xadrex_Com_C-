@@ -10,7 +10,7 @@ namespace tabuleiro {
         }
 
         public override string? ToString() {
-            return $"Linha {this.linha}, Coluna {this.coluna}";
+            return $"{this.linha},{this.coluna}";
         }
     }
 }
