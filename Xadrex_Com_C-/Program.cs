@@ -6,36 +6,45 @@ namespace Xadrex_Com_C {
     class Program {
         static void Main(string[] args) {
 
-            PartidaDeXadrex partida = new PartidaDeXadrex();
-            while (!partida.terminada) {
-                
-                try {
-                    Tela.imprimirPartida(partida);
+            try {
+                PartidaDeXadrez partida = new PartidaDeXadrez();
 
-                    Console.WriteLine();
-                    Console.Write("Origem: ");
-                    Posicao origem = Tela.lerPosicaoXadrez().toPosicao();
-                    partida.validarPosicaoDeOrigiem(origem);
+                while (!partida.terminada) {
 
-                    bool[,] posicoesPossiveis = partida.tab.peca(origem).movimentoPossiveis();
+                    try {
+                        Console.Clear();
+                        Tela.imprimirPartida(partida);
 
-                    Console.Clear();
-                    Tela.imprimirTabuleiro(partida.tab, posicoesPossiveis);
+                        Console.WriteLine();
+                        Console.Write("Origem: ");
+                        Posicao origem = Tela.lerPosicaoXadrez().toPosicao();
+                        partida.validarPosicaoDeOrigem(origem);
 
-                    Console.Write("Destino: ");
-                    Posicao destino = Tela.lerPosicaoXadrez().toPosicao();
-                    partida.validarPosicaoDeDestino(origem, destino);
-                    partida.realizaJogada(origem, destino);
+                        bool[,] posicoesPossiveis = partida.tab.peca(origem).movimentosPossiveis();
 
+                        Console.Clear();
+                        Tela.imprimirTabuleiro(partida.tab, posicoesPossiveis);
 
+                        Console.WriteLine();
+                        Console.Write("Destino: ");
+                        Posicao destino = Tela.lerPosicaoXadrez().toPosicao();
+                        partida.validarPosicaoDeDestino(origem, destino);
 
+                        partida.realizaJogada(origem, destino);
+                    }
+                    catch (TabuleiroException e) {
+                        Console.WriteLine(e.Message);
+                        Console.ReadLine();
+                    }
                 }
-                catch (TabuleiroException e) {
-                    Console.WriteLine("Erro: " + e.Message);
-                    Console.ReadKey();
-                    Console.Clear();
-                }
+                Console.Clear();
+                Tela.imprimirPartida(partida);
             }
+            catch (TabuleiroException e) {
+                Console.WriteLine(e.Message);
+            }
+
+            Console.ReadLine();
         }
     }
 }
